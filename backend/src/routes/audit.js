@@ -488,7 +488,8 @@ module.exports = function(app, io) {
                 let modifiedDoc = response.data;
 
                 // Теперь отправляем обработанный файл на frontend
-                Response.SendFile(res, `${encodedSafeName}.${audit.template.ext || 'docx'}`, modifiedDoc);
+//                Response.SendFile(res, `${encodedSafeName}.${audit.template.ext || 'docx'}`, modifiedDoc);
+                Response.SendFile(res, `audit.docx`, modifiedDoc);
 
             } catch (error) {
                 console.error('Error while sending file to Python:', error);
