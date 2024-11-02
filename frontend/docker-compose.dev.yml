@@ -1,0 +1,28 @@
+version: '3'
+services:
+
+  pwndoc-ng-frontend:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    image: pwndoc-ng/pwndoc-ng:frontend-dev
+    container_name: pwndoc-ng-frontend-dev
+    volumes:
+      - ./src:/app/src
+      - ./ssl:/app/ssl
+      - ./public:/app/public
+      - ./.postcssrc.js:/app/.postcssrc.js
+      - ./babel.config.js:/app/babel.config.js
+      - ./quasar.conf.js:/app/quasar.conf.js
+      - ./package.json:/app/package.json
+      - ./package-lock.json:/app/package-lock.json
+    restart: always
+    ports:
+      - 8081:8081
+    networks:
+      - backend
+
+networks:
+  backend:
+    external:
+      name: backend_backend
